@@ -31,7 +31,7 @@ open class EJSON: NSObject {
     Determines whether a given key is an eJSON key
     */
     
-    open static func isEJSON(_ key:String) -> Bool {
+    public static func isEJSON(_ key:String) -> Bool {
         switch key {
         case "$date": return true
         case "$binary": return true
@@ -44,12 +44,12 @@ open class EJSON: NSObject {
     Converts an eJSON date to NSDate
     */
     
-    open static func convertToNSDate(_ ejson:NSDictionary) -> Date {
+    public static func convertToNSDate(_ ejson:NSDictionary) -> Date {
         let timeInterval = TimeInterval(ejson.value(forKey: "$date") as! Double) / 1000
         return Date(timeIntervalSince1970: timeInterval)
     }
     
-    open static func convertToEJSONDate(_ date:Date) -> [String:Double] {
+    public static func convertToEJSONDate(_ date:Date) -> [String:Double] {
         let timeInterval = Double(date.timeIntervalSince1970) * 1000
         print("Date -> \(date), \(timeInterval)")
         return ["$date": timeInterval]

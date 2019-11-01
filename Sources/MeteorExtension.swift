@@ -7,6 +7,7 @@
 //
 
 import Foundation
+#if !os(macOS)
 import UIKit
 
 extension Meteor {
@@ -50,7 +51,7 @@ extension Meteor {
      - parameter viewController:    A view controller from which to launch the OAuth modal dialog
      */
     
-    open static func loginWithTwitter<T: UIViewController>(_ viewController: T) {
+    public static func loginWithTwitter<T: UIViewController>(_ viewController: T) {
         Meteor.loginWithService("twitter", clientId: "", viewController: viewController)
     }
     
@@ -61,7 +62,7 @@ extension Meteor {
      - parameter clientId:          The apps client id, provided by the service (Facebook, Google, etc.)
      */
     
-    open static func loginWithFacebook<T: UIViewController>(_ clientId: String, viewController: T) {
+    public static func loginWithFacebook<T: UIViewController>(_ clientId: String, viewController: T) {
         Meteor.loginWithService("facebook", clientId: clientId, viewController: viewController)
     }
     
@@ -72,7 +73,7 @@ extension Meteor {
      - parameter clientId:          The apps client id, provided by the service (Facebook, Google, etc.)
      */
     
-    open static func loginWithGithub<T: UIViewController>(_ clientId: String, viewController: T) {
+    public static func loginWithGithub<T: UIViewController>(_ clientId: String, viewController: T) {
         Meteor.loginWithService("github", clientId: clientId, viewController: viewController)
     }
     
@@ -83,7 +84,8 @@ extension Meteor {
      - parameter clientId:          The apps client id, provided by the service (Facebook, Google, etc.)
      */
     
-    open static func loginWithGoogle<T: UIViewController>(_ clientId: String, viewController: T) {
+    public static func loginWithGoogle<T: UIViewController>(_ clientId: String, viewController: T) {
         Meteor.loginWithService("google", clientId: clientId, viewController: viewController)
     }
 }
+#endif

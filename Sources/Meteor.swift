@@ -48,7 +48,7 @@ open class Meteor {
     client is a singleton instance of DDPClient
     */
         
-    open static let client = Meteor.Client()          // Client is a singleton object
+    public static let client = Meteor.Client()          // Client is a singleton object
     
     internal static var collections = [String:MeteorCollectionType]()
     
@@ -56,7 +56,7 @@ open class Meteor {
     returns a Meteor collection, if it exists
     */
     
-    open static func collection(_ name:String) -> MeteorCollectionType? {
+    public static func collection(_ name:String) -> MeteorCollectionType? {
         return collections[name]
     }
     
@@ -66,7 +66,7 @@ open class Meteor {
     - parameter name:       The name of the subscription.
     */
     
-    @discardableResult open static func subscribe(_ name:String) -> String { return client.sub(name, params:nil) }
+    @discardableResult public static func subscribe(_ name:String) -> String { return client.sub(name, params:nil) }
     
     
     /**
@@ -76,7 +76,7 @@ open class Meteor {
     - parameter params:     An object containing method arguments, if any.
     */
     
-    @discardableResult open static func subscribe(_ name:String, params:[Any]) -> String { return client.sub(name, params:params) }
+    @discardableResult public static func subscribe(_ name:String, params:[Any]) -> String { return client.sub(name, params:params) }
     
     /**
     Sends a subscription request to the server. If a callback is passed, the callback asynchronously
@@ -88,7 +88,7 @@ open class Meteor {
     - parameter callback:   The closure to be executed when the server sends a 'ready' message.
     */
     
-    @discardableResult open static func subscribe(_ name:String, params:[Any]?, callback: DDPCallback?) -> String { return client.sub(name, params:params, callback:callback) }
+    @discardableResult public static func subscribe(_ name:String, params:[Any]?, callback: DDPCallback?) -> String { return client.sub(name, params:params, callback:callback) }
     
     /**
     Sends a subscription request to the server. If a callback is passed, the callback asynchronously
@@ -99,7 +99,7 @@ open class Meteor {
     - parameter callback:   The closure to be executed when the server sends a 'ready' message.
     */
     
-    @discardableResult open static func subscribe(_ name:String, callback: DDPCallback?) -> String { return client.sub(name, params: nil, callback: callback) }
+    @discardableResult public static func subscribe(_ name:String, callback: DDPCallback?) -> String { return client.sub(name, params: nil, callback: callback) }
     
     /**
     Sends an unsubscribe request to the server. Unsubscibes to all subscriptions with the provided name.
@@ -107,14 +107,14 @@ open class Meteor {
      
     */
     
-    @discardableResult open static func unsubscribe(_ name:String, callback:DDPCallback?) -> [String] { return client.unsub(withName: name, callback: callback) }
+    @discardableResult public static func unsubscribe(_ name:String, callback:DDPCallback?) -> [String] { return client.unsub(withName: name, callback: callback) }
     
     /**
      Sends an unsubscribe request to the server using a subscription id. This allows fine-grained control of subscriptions. For example, you can unsubscribe to specific combinations of subscriptions and subscription parameters. 
      - parameter id: An id string returned from a subscription request
      */
     
-    open static func unsubscribe(withId id:String) { return client.unsub(withId: id, callback: nil) }
+    public static func unsubscribe(withId id:String) { return client.unsub(withId: id, callback: nil) }
     
     /**
      Sends an unsubscribe request to the server using a subscription id. This allows fine-grained control of subscriptions. For example, you can unsubscribe to specific combinations of subscriptions and subscription parameters. If a callback is passed, the callback asynchronously
@@ -123,7 +123,7 @@ open class Meteor {
      - parameter callback:   The closure to be executed when the method has been executed
      */
     
-    open static func unsubscribe(withId id:String, callback:DDPCallback?) { return client.unsub(withId: id, callback: callback) }
+    public static func unsubscribe(withId id:String, callback:DDPCallback?) { return client.unsub(withId: id, callback: callback) }
     
     /**
     Calls a method on the server. If a callback is passed, the callback is asynchronously
@@ -136,7 +136,7 @@ open class Meteor {
     - parameter callback:   The closure to be executed when the method has been executed
     */
     
-    @discardableResult open static func call(_ name:String, params:[Any]?, callback:DDPMethodCallback?) -> String? {
+    @discardableResult public static func call(_ name:String, params:[Any]?, callback:DDPMethodCallback?) -> String? {
         return client.method(name, params: params, callback: callback)
     }
     
@@ -148,7 +148,7 @@ open class Meteor {
     - parameter password:   A string password 
     */
     
-    open static func connect(_ url:String, email:String, password:String) {
+    public static func connect(_ url:String, email:String, password:String) {
         client.connect(url) { session in
             client.loginWithPassword(email, password: password) { result, error in
                 guard let _ = error else {
@@ -167,7 +167,7 @@ open class Meteor {
     - parameter url:        The url of a Meteor server
     */
     
-    open static func connect(_ url:String) {
+    public static func connect(_ url:String) {
         client.resume(url, callback: nil)
     }
     
@@ -178,7 +178,7 @@ open class Meteor {
     - parameter callback:   An optional closure to be executed after the connection is established
     */
     
-    open static func connect(_ url:String, callback:DDPCallback?) {
+    public static func connect(_ url:String, callback:DDPCallback?) {
         client.resume(url, callback: callback)
     }
 
@@ -192,7 +192,7 @@ open class Meteor {
     
     */
     
-    open static func signupWithEmail(_ email: String, password: String, callback: DDPMethodCallback?) {
+    public static func signupWithEmail(_ email: String, password: String, callback: DDPMethodCallback?) {
         client.signupWithEmail(email, password: password, callback: callback)
     }
     
@@ -206,7 +206,7 @@ open class Meteor {
      
      */
     
-    open static func signupWithEmail(_ email: String, password: String, profile: NSDictionary, callback: DDPMethodCallback?) {
+    public static func signupWithEmail(_ email: String, password: String, profile: NSDictionary, callback: DDPMethodCallback?) {
         client.signupWithEmail(email, password: password, profile: profile, callback: callback)
     }
     
@@ -221,7 +221,7 @@ open class Meteor {
      
      */
     
-    open static func signupWithUsername(_ username: String, password: String, email: String? = nil, profile: NSDictionary? = nil, callback: DDPMethodCallback? = nil) {
+    public static func signupWithUsername(_ username: String, password: String, email: String? = nil, profile: NSDictionary? = nil, callback: DDPMethodCallback? = nil) {
         client.signupWithUsername(username, password: password, email: email, profile: profile, callback: callback)
     }
     
@@ -233,7 +233,7 @@ open class Meteor {
     - parameter callback:   A closure with result and error parameters describing the outcome of the operation
     */
     
-    open static func loginWithPassword(_ email:String, password:String, callback:DDPMethodCallback?) {
+    public static func loginWithPassword(_ email:String, password:String, callback:DDPMethodCallback?) {
         client.loginWithPassword(email, password: password, callback: callback)
     }
     
@@ -244,7 +244,7 @@ open class Meteor {
     - parameter password:   A password string
     */
     
-    open static func loginWithPassword(_ email:String, password:String) {
+    public static func loginWithPassword(_ email:String, password:String) {
         client.loginWithPassword(email, password: password, callback: nil)
     }
     
@@ -256,7 +256,7 @@ open class Meteor {
      - parameter callback:   A closure with result and error parameters describing the outcome of the operation
      */
     
-    open static func loginWithUsername(_ username:String, password:String, callback:DDPMethodCallback? = nil) {
+    public static func loginWithUsername(_ username:String, password:String, callback:DDPMethodCallback? = nil) {
         client.loginWithUsername(username, password: password, callback: callback)
     }
 
@@ -267,7 +267,7 @@ open class Meteor {
      - parameter callback:   A closure with result and error parameters describing the outcome of the operation
      */
     
-    open static func login(_ params: NSDictionary, callback:DDPMethodCallback?) {
+    public static func login(_ params: NSDictionary, callback:DDPMethodCallback?) {
         client.login(params, callback: callback)
     }
     
@@ -277,7 +277,7 @@ open class Meteor {
     - parameter callback: An optional closure to be executed after the client has logged out
     */
     
-    open static func logout(_ callback:DDPMethodCallback?) {
+    public static func logout(_ callback:DDPMethodCallback?) {
         client.logout(callback)
     }
     
@@ -285,7 +285,7 @@ open class Meteor {
     Logs a user out of the server
     */
     
-    open static func logout() {
+    public static func logout() {
         client.logout()
     }
     

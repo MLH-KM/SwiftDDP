@@ -42,7 +42,7 @@ private let syncWarning = {(name:String) -> Void in
 extension String {
     func dictionaryValue() -> NSDictionary? {
         if let data = self.data(using: String.Encoding.utf8, allowLossyConversion: false) {
-            let dictionary = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! NSDictionary
+            let dictionary = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary
             return dictionary
         }
         return nil
@@ -492,7 +492,7 @@ extension DDPClient {
                         if let completion = callback { completion() }
                     } else {
                         self.logout()
-                        log.error("\(error)")
+                        log.error("\(String(describing: error))")
                         callback?()
                     }
                     }{

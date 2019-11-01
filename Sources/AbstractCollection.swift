@@ -23,7 +23,7 @@ import Foundation
 open class AbstractCollection: NSObject, MeteorCollectionType {
     
     open var name:String
-    open let client = Meteor.client
+    public let client = Meteor.client
     
     public init(name:String) {
         self.name = name

@@ -78,7 +78,7 @@ open class MeteorCollection<T:MeteorDocument>: AbstractCollection {
     }
     
     fileprivate func index(_ id: String) -> Int? {
-        return sorted.index(where: {item in item._id == id})
+        return sorted.firstIndex(where: {item in item._id == id})
     }
     
     fileprivate func sorted(_ property:String) -> [T] {

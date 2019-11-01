@@ -1,10 +1,13 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "SwiftDDP",
+    platforms: [
+         .iOS(.v12)
+       ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
@@ -16,7 +19,9 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/DaveWoodCom/XCGLogger.git", from: "6.0.0"),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "0.12.0"),
-        .package(url: "https://github.com/tidwall/SwiftWebSocket.git", from: "2.7.0"),
+        .package(url: "https://github.com/Justinwveach/SwiftWebSocket.git", from: "3.0.0"),
+//        .package(url: "https://github.com/Quick/Quick.git", from: "2.2.0"),
+//        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.4")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -25,9 +30,9 @@ let package = Package(
             name: "SwiftDDP",
             dependencies: ["XCGLogger", "CryptoSwift", "SwiftWebSocket"],
             path: "Sources"),
-        .testTarget(
-            name: "SwiftDDPTests",
-            dependencies: ["SwiftDDP"],
-            path: "SwiftDDPTests"),
+//        .testTarget(
+//            name: "SwiftDDPTests",
+//            dependencies: ["SwiftDDP"], //, "Quick", "Nimble"],
+//            path: "SwiftDDPTests"),
     ]
 )
