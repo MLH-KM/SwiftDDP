@@ -19,7 +19,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/DaveWoodCom/XCGLogger.git", from: "6.0.0"),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "0.12.0"),
-        .package(url: "https://github.com/Justinwveach/SwiftWebSocket.git", from: "3.0.0"),
+        .package(url: "https://github.com/MLH-KM/SwiftWebSocket.git", from: "3.0.0"),
 //        .package(url: "https://github.com/Quick/Quick.git", from: "2.2.0"),
 //        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.4")
     ],
